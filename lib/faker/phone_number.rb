@@ -1,16 +1,16 @@
 module Faker::PhoneNumber
   extend self
 
-  def phone_number(options)
+  def phone_number(options={})
     nanp_phone_number(options)
   end
 
-  def cell_phone(options)
+  def cell_phone(options={})
     nanp_phone_number(options)
   end
 
   # http://en.wikipedia.org/wiki/North_American_Numbering_Plan
-  def nanp_phone_number(options)
+  def nanp_phone_number(options={})
     itucc = ['', '+1', '1'].sample
 
     npa = (2..9).to_a.sample.to_s + (0..8).to_a.sample.to_s + (0..9).to_a.sample.to_s
