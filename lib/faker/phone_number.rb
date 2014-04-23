@@ -13,7 +13,7 @@ module Faker::PhoneNumber
   def nanp_phone_number(options={})
     itucc = ['', '+1', '1'].sample
 
-    npa = (2..9).to_a.sample.to_s + (0..8).to_a.sample.to_s + (0..9).to_a.sample.to_s
+    npa = (2..9).to_a.sample.to_s + (2..8).to_a.sample.to_s + (0..9).to_a.sample.to_s
 
     co = [(2..9).to_a.sample, (0..9).to_a.sample]
     co <<  (co.last == 1 ? ((2..9).to_a << 0).to_a.sample : (0..9).to_a.sample)
