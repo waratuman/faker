@@ -13,12 +13,12 @@ module Faker::PhoneNumber
 
   # http://en.wikipedia.org/wiki/North_American_Numbering_Plan
   def nanp_phone_number(options={})
-    itucc = ['', '+1', '1'].sample
+    itucc = ['', '+1'].sample
 
     npa = NANP_NPA_CODES.sample
 
     co = [(2..9).to_a.sample, (0..9).to_a.sample]
-    co <<  (co.last == 1 ? ((2..9).to_a << 0).to_a.sample : (0..9).to_a.sample)
+    co <<  (co.last == 1 ? ((2..9).to_a << 0).sample : (0..9).to_a.sample)
     co = co.join
 
     sn = []
@@ -37,8 +37,8 @@ module Faker::PhoneNumber
     phone = itucc + [' ', ''].sample
     phone += (parens ? '(' + npa + ')' : npa)
     phone += sep + co + sep + sn
-    phone += extsep + extname + ext if !(options[:extension] == false)
-    phone.gsub(/\s/, ' ')
+    phone += extsep + extname + ext if options[:extension]
+    phone.gsub!(/\s+/, ' ')
     phone
   end
 
