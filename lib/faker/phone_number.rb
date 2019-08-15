@@ -32,11 +32,11 @@ module Faker::PhoneNumber
     extname = ['x', 'ex.', 'ex', 'ext', 'extension'].sample + [' ', ''].sample
 
     sep = ['-', ' ', '.'].sample
-    parens = [true, false].sample
+    parens = sep != '.' && [true, false].sample
 
     phone = itucc + [' ', ''].sample
     phone += (parens ? '(' + npa + ')' : npa)
-    phone += sep + co + sep + sn
+    phone += (parens ? ' ' : sep) + co + sep + sn
     phone += extsep + extname + ext if options[:extension]
     phone.gsub!(/\s+/, ' ')
     phone
